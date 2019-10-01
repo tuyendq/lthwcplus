@@ -23,7 +23,7 @@ DEPFILE_FLAGS = -MMD -MP
 
 # Provide lots of helpful warning/errors:
 # (Switching from clang++ to g++ caused some trouble here. Not all flags are identically between the compilers.)
-#WARNINGS_AS_ERRORS = -Werror $ Un-commenting this line makes compilation much more strict.
+#WARNINGS_AS_ERRORS = -Werror # Un-commenting this line makes compilation much more strict.
 GCC_EXCLUSIVE_WARNING_OPTIONS = # -Wno-unused-but-set-variable
 CLANG_EXCLUSIVE_WARNIN_OPTIONS = # _Wno-unused-parameter -Wno-unused-variable
 ifeq ($(CXX),g++)
@@ -31,7 +31,7 @@ EXCLUSIVE_WARNING_OPTIONS = $(GCC_EXCLUSIVE_WARNING_OPTIONS)
 else
 EXCLUSIVE_WARNING_OPTIONS = $(CLANG_EXCLUSIVE_WARNING_OPTIONS)
 endif
-WARNINGS = -pedantic -Wall $(WARNING_AS_ERRORS) -Wfatal-errors -Wextra $(EXCLUSIVE_WARNING_OPTIONS)
+WARNINGS = -pedantic -Wall $(WARNINGS_AS_ERRORS) -Wfatal-errors -Wextra $(EXCLUSIVE_WARNING_OPTIONS)
 
 # Flags for compile:
 CXXFLAGS += -std=c++14 -O0 $(WARNINGS) $(DEPFILE_FLAGS) -g -c
@@ -53,10 +53,10 @@ $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p $(OBJS_DIR)/uiuc
 
-# Rule for compling source code.
+# Rules for compiling source code.
 # - Every object file is required by $(EXE)
 # - Generates the rule requiring the .cpp file of the same name
-$(OBJS_DIR)/%.o: %.cpp | %(OBJS_DIR)
+$(OBJS_DIR)/%.o: %.cpp | $(OBJS_DIR)
 	$(CXX) $(CXXFLAGS) $< -o $@
 
 # Additional dependencies for object files are included in the clang++
@@ -65,7 +65,7 @@ $(OBJS_DIR)/%.o: %.cpp | %(OBJS_DIR)
 -include $(OBJS_DIR)/uiuc/*.d
 
 
-# Standard C++ Make file rules:
+# Standard C++ Makefile rules:
 clean:
 	rm -rf $(EXE) $(TEST) $(OBJS_DIR) $(CLEAN_RM) *.o *.d
 
