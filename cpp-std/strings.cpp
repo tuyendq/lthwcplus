@@ -1,10 +1,12 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
+
 int main()
 {
 	string strA = "I'm reviewing C++.";
-	std::cout << strA << std::endl;
+	cout << strA << endl;
 
 	return 0;
 }
