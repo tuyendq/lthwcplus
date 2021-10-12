@@ -21,3 +21,8 @@ Block comment
 char: 1 byte
 bool: 1 byte
 
+
+
+## Resources
+- [Sololearn.com](https://sololearn.com)
+- [Learn C++ on CommonLounge](https://www.commonlounge.com/discussion/b7d5d197ea274a0f83eee5c1c9d17e8c/)
